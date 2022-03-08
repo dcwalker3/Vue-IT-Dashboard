@@ -1,0 +1,27 @@
+.InputForms {
+    display: -ms-flexbox;
+    align-content: center;
+    text-align: center;
+    font-size: larger;
+    width: 50%;
+    height: 50%;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: auto;
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
+.InputForms input{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.SubmitBtn {
+    font-size: large;
+    width: 25%;
+    height: 25%;
+    color: white;
+    background-color: darkgrey;
+    cursor: pointer;
+}
