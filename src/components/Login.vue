@@ -36,9 +36,11 @@
     /><br/>
 
     <button
-        class="SubmitBtn"
+        class="SubmitBtn mb-2"
         type="submit"
     >Submit</button>
+    <div class="message mb-2">{{ msg }}</div>
+    <div class="error mb-2">{{ error }}</div>
   </form>
 </template>
 
@@ -50,32 +52,50 @@ export default {
     return {
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      msg: '',
+      error: ''
     }
   },
   methods: {
     // Submit function.
     submitForm: async function () {
+      // Set Messages to null
+      this.error = "";
+      this.msg = "";
 
-      // Launch Fetch request
-      fetch('http://localhost:3000/user', {
-        // headers and methods
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      try {
+        // Confirm Passwords Match
+        if (this.password === this.confirmPassword) {
+          console.log('They Match');
 
-        // Stringify Input
-        body: JSON.stringify({
-          email: this.email,
-          password: this.password,
-          confirmPassword: this.confirmPassword
-        })
-      })
-          .then(res => console.log(res))
-          .catch(error => console.log(`error: ${error}`))
+          // Launch Fetch request
+          let response = await fetch('http://localhost:3000/user', {
+            // headers and methods
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
 
+            // Stringify Input
+            body: JSON.stringify({
+              email: this.email,
+              password: this.password,
+              confirmPassword: this.confirmPassword
+            })
+          })
 
+          let data = await response.text();
+          console.log(data)
+          console.log(typeof data)
+
+        } else {
+          this.error = "Please Make Sure Your Passwords Match";
+        }
+      } catch (e){
+        console.log(e);
+        this.error = "There was an error trying to signup please try again!"
+      }
     }
   }
 }
