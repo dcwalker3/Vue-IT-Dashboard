@@ -3,7 +3,7 @@
     align-content: center;
     text-align: center;
     font-size: larger;
-    width: 50%;
+    width: 55%;
     height: 50%;
     border: 1px solid black;
     border-radius: 15px;
@@ -24,4 +24,19 @@
     color: white;
     background-color: darkgrey;
     cursor: pointer;
+}
+
+.err {
+    font-size: medium;
+    color: red;
+}
+
+.msg {
+    font-size: medium;
+    color: forestgreen;
+}
+
+.textDisplay {
+    margin-bottom: 20px;
+    margin-top: 20px;
 }

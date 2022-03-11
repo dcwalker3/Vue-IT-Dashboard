@@ -1,6 +1,6 @@
 <template>
   <form class="InputForms" id="LoginForm" v-on:submit.prevent="submitForm">
-    <h3>Login</h3>
+    <h3>Sign Up</h3>
 
     <!-- Email Input -->
     <label for="emailInput">Email: </label><br>
@@ -24,14 +24,21 @@
         v-model="password"
     /><br/>
 
+    <!-- Confirm Password -->
+    <label for="confirmPasswordInput">Confirm Password: </label><br>
+    <input
+        name="confirmPasswordInput"
+        id="confirmPasswordInput"
+        type="password"
+        required
+        placeholder="******"
+        v-model="confirmPassword"
+    /><br/>
+
     <button
         class="SubmitBtn"
         type="submit"
-    >Login</button>
-
-    <div>
-      Already have an account?<router-link to="/signup">Click Here!</router-link>
-    </div>
+    >Sign Up</button>
 
     <!-- User Messages -->
     <div class="msg textDisplay">{{ msg }}</div>
@@ -42,12 +49,13 @@
 <script>
 export default {
 
-  name: "Login-Component",
+  name: "Signup-Component",
   data() {
     return {
       loading: false,
       email: '',
       password: '',
+      confirmPassword: '',
       msg: '',
       error: ''
     }
@@ -60,8 +68,9 @@ export default {
       this.loading = true;
 
       try {
+        if(this.password === this.confirmPassword) {
           // Launch Fetch request
-          let res = await fetch('http://localhost:3000/user/login', {
+          let response = await fetch('http://localhost:3000/user/signup', {
             // headers and methods
             method: 'POST',
             headers: {
@@ -76,10 +85,18 @@ export default {
           })
 
 
-          let data = await res.text();
+          let data = await response.text();
           console.log(data);
-          await this.$router.push('/');
+          if(response.status === 201 || response.status === 200){
+            await this.$router.push('/');
+          } else {
+            console.log(`Status Code was ${response.status}`)
+          }
 
+        } else{
+          this.error = "Please make sure your passwords match before trying again."
+          this.loading = false;
+        }
       } catch {
         this.error = "There was an error signing up. Please Try Again!";
         this.loading = false;

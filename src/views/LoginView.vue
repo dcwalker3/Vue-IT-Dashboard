@@ -6,7 +6,7 @@
 import LoginComponent from "@/components/Login";
 export default {
   components: {
-    LoginComponent
+    LoginComponent,
   }
 }
 </script>
