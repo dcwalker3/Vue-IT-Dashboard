@@ -90,7 +90,11 @@ export default {
           if(response.status === 201 || response.status === 200){
             await this.$router.push('/');
           } else {
-            console.log(`Status Code was ${response.status}`)
+            if (response.status === 409) {
+              this.error = "User Already Exists!"
+            } else {
+              console.log(`Status Code was ${response.status}`)
+            }
           }
 
         } else{
