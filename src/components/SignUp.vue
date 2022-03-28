@@ -87,6 +87,7 @@ export default {
 
           let data = await response.text();
           console.log(data);
+          
           if(response.status === 201 || response.status === 200){
             await this.$router.push('/');
           } else {
