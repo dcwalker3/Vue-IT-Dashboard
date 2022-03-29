@@ -5,6 +5,8 @@
 
 <script>
 import NavBar from "@/components/NavBar";
+require('./StyleSheets/SiteStatusBar.css');
+
 export default {
   components: {NavBar}
 }

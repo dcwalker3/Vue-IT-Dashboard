@@ -1,0 +1,49 @@
+/* CSS for our Site Sidebar component that shows the status of sites we include. */
+#SideBar {
+    position: relative;
+    display: flow;
+    width: fit-content;
+    height: fit-content;
+    left: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
+    padding: 10px;
+    font-family: Ariel, sans-serif;
+    background-color: rgba(241, 236, 236, 0.47);
+}
+
+#SideBar a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#SiteStatusTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: Ariel, sans-serif;
+}
+
+#SiteStatusTable th {
+    padding: 10px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+}
+
+#SiteStatusTable td {
+    padding: 10px;
+    background-color: rgba(241, 236, 236, 0.47);
+}
+
+#SiteStatusTable tr:hover {
+    background-color: rgba(164, 157, 157, 0.47);
+    cursor: pointer;
+}
+
+#SiteStatusTable .url {
+    border-right: 1px solid black;
+}
+
