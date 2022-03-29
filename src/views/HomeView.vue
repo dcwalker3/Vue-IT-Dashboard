@@ -1,13 +1,18 @@
 <template>
-  <div class="home">
-    <SiteSidebar/>
-  </div>
+  <SiteSidebar/>
 </template>
 
 <script>
-import SiteSidebar from '@/components/SiteSidebar.vue'
-export default {
-  components: { SiteSidebar },
-  name: 'HomeView'
-}
+import { defineComponent } from 'vue';
+
+// Components
+import SiteSidebar from "@/components/SiteSidebar";
+
+export default defineComponent({
+  name: 'HomeView',
+
+  components: {
+    SiteSidebar,
+  },
+});
 </script>

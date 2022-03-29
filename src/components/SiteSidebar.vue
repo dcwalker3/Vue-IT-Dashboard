@@ -1,8 +1,10 @@
 <template>
     <div id="SideBar">
       <div id="ToolBar">
-        <span id="addSite">+</span>
-        <span id="removeSite">-</span>
+        <div class="mb-4 mt-4 ml-4 d-inline-flex">
+          <AddSite class="mr-4"/>
+          <RemoveSite v-bind:sites="this.sites"/>
+        </div>
       </div>
       <table id="SiteStatusTable">
         <tr>
@@ -10,7 +12,7 @@
           <th>Status</th>
         </tr>
         <tr v-for="site in sites" :key="site._id">
-          <td class="url">{{ site.url }}</td>
+          <td class="url"><a v-bind:href="'https://'+site.url" target="_blank">{{ site.url }}</a></td>
           <td>{{site.currentStatus}}</td>
         </tr>
       </table>
@@ -18,26 +20,22 @@
 </template>
 
 <script>
-  import Button from '@mui/material/Button';
-  import TextField from '@mui/material/TextField';
-  import Dialog from '@mui/material/Dialog';
-  import DialogActions from '@mui/material/DialogActions';
-  import DialogContent from '@mui/material/DialogContent';
-  import DialogContentText from '@mui/material/DialogContentText';
-  import DialogTitle from '@mui/material/DialogTitle';
+  import AddSite from "@/components/AddSite";
+  import RemoveSite from "@/components/RemoveSite";
 
   const axios = require('axios');
 
   export default {
-      name: "Site-Sidebar",
-      data() {
+    name: "Site-Sidebar",
+    components: {AddSite, RemoveSite},
+    data() {
           return {
               sites: [],
+              displayAddSiteComponent: false,
           }
       },
 
       methods: {
-
       },
       mounted(){
          axios.get('http://localhost:4000/site/getAll')

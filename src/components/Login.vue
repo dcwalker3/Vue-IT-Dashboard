@@ -30,7 +30,7 @@
     >Login</button>
 
     <div>
-      Already have an account?<router-link to="/signup">Click Here!</router-link>
+      Don't have an account? <router-link to="/signup">Click Here!</router-link>
     </div>
 
     <!-- User Messages -->
